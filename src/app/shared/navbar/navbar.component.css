@@ -1,0 +1,118 @@
+.logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    margin: 16px 24px 16px 0;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-menu-reponsive{
+    display: none !important;
+}
+
+@media (max-width: 720px){
+    .header{
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .mr-4{
+        margin-right: 0.5rem;
+    }
+    
+    .pr-4{
+        padding-right: 0.5rem;
+    }
+    .header-menu{
+        display: none !important;
+    }
+    .header-menu-reponsive{
+        line-height: 64px;
+        display: flex !important;
+        justify-content: flex-end;
+    }    
+}
+
+[nz-menu] {
+    line-height: 64px;  
+}
+.header-menu {
+    line-height: 64px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mr-3{
+    margin-right: 1rem;
+}
+
+.mr-4{
+    margin-right: 2rem;
+}
+.mr-2{
+    margin-right: 0.5rem;
+}
+
+.mr-2{
+    margin-right: 0.5rem;
+}
+.ml-2{
+    margin-left: 0.5rem;
+}
+
+.pr-4{
+    padding-right: 2rem;
+}
+
+.pr-3{
+    padding-right: 1rem;
+}
+
+.border-right{
+    border-right: 1px solid white;
+}
+
+[nz-icon] {
+    margin-right: 6px;
+    font-size: 24px;
+}
+
+.width{
+    width: 30%;
+}
+
+.demo-loadmore-list {
+    min-height: 350px;
+}
+.loadmore {
+    text-align: center;
+    margin-top: 12px;
+    height: 32px;
+    line-height: 32px;
+}
+
+.color-white{
+    color: white !important;
+}
+
+.cursor-none{
+    cursor: default;
+}
+
+span.product-number {
+    color: #FFFFFF;
+    font-family: "Poppins-Regular", Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    position: fixed;
+    top: 11px;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    text-align: center;
+    background-color: #FF441F;
+    border-radius: 50%;
+    z-index: 999;
+}

@@ -1,0 +1,53 @@
+<div nz-row>
+    <div nz-col [nzXs]="{span: 24, offset: 0}"  [nzMd]="{span: 8, offset: 16}" [nzLg]="{span: 6, offset: 18}" class="mb-3" [formGroup]="form">
+        <!-- <nz-input-group [nzSuffix]="suffixIconSearch" nzSize="large">
+            <input type="text" nz-input placeholder="Buscar producto" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+            <i nz-icon nzType="search"></i>
+        </ng-template> -->
+        <nz-input-group nzSearch [nzSuffix]="suffixIconSearch" nzSize="large">
+            <input type="text" nz-input placeholder="Buscar producto" formControlName="search" (keyup)="search()" />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+            <i nz-icon nzType="search"></i>
+        </ng-template>
+    </div>
+</div>
+<!-- 
+<nz-card class="d-flex height-100" [nzBordered]="true">
+    <input type="text" nz-input  placeholder="Buscar producto" />
+</nz-card> -->
+<div nz-row [nzGutter]="[16, 16]">
+    <div nz-col nzXs="24" nzSm="12" nzMd="8" nzLg="6" *ngFor="let item of listProducts; let i = index">
+        <nz-card class="height-100 cursor-default" nzHoverable [nzBordered]="true" [nzTitle]="item.name"
+            [nzExtra]="extraTemplate">
+            <p class="description-product">{{item.description}}</p>
+            <button *ngIf="!checkProductInCart(item.id)" nz-button class="ant-btn-success" nzSize="large"
+                nzShape="round" nzBlock (click)="addProduct(item)">Agregar</button>
+            <div *ngIf="checkProductInCart(item.id)" class="d-flex justify-content-center height-100">
+                <ul nz-list-item-actions>
+                    <nz-list-item-action><a role="button" (click)="editProduct(item, quantityForProduct(item.id)-1)"><i
+                                nz-icon [nzType]="quantityForProduct(item.id) > 1 ? 'minus-circle': 'delete' "
+                                nzTheme="outline" style="color: '#dc3545'; font-size: 18px"></i></a>
+                    </nz-list-item-action>
+                    <nz-list-item-action>{{quantityForProduct(item.id)}}UND</nz-list-item-action>
+                    <nz-list-item-action><a role="button" (click)="editProduct(item, quantityForProduct(item.id)+1)"><i
+                                nz-icon nzType="plus-circle" nzTheme="outline"
+                                style="color: '#0cc665; font-size: 18px'"></i></a></nz-list-item-action>
+                </ul>
+            </div>
+        </nz-card>
+        <ng-template #extraTemplate>
+            <button nz-button nzShape="circle" (click)="showModal(item)"><i nz-icon nzType="file-search"
+                    nzTheme="outline"></i></button>
+        </ng-template>
+    </div>
+</div>
+<div *ngIf="listProducts.length == 0" class="no-data">
+    <img src="./../../../assets/images/no_data.svg" alt="No data">
+    <h1>No se encontraron productos</h1>
+</div>
+<app-modal-product (closeModal)="handleCancel($event)" [modalVisible]="isModalProduct" [item]="itemSelect"
+    [isCart]="this.isCart" [quantity]="this.quantity" [index]="this.index"></app-modal-product>
+<app-loader [isLoading]="loadingAuth() || isloading" text="Cargando..."></app-loader>

@@ -1,0 +1,64 @@
+<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" (nzOnClose)="close()" [nzVisible]="visible" [nzWidth]="'100%'"
+    nzTitle="Menu" (nzOnClose)="close()" [nzFooter]="footerTpl">
+    <ng-container *nzDrawerContent>
+        <nz-list class="demo-loadmore-list">
+            <nz-list-item [routerLink]="['/']" (click)="close()">
+                <ul nz-list-item-actions>
+                    <nz-list-item-action>
+                        <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+                    </nz-list-item-action>
+                </ul>
+                <ng-container>
+                    <nz-list-item-meta>
+                        <nz-list-item-meta-title>
+                            <a role="button">Productos</a>
+                        </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                </ng-container>
+            </nz-list-item>
+            <nz-list-item *ngIf="checkSesion()" [routerLink]="['/ordenes']" (click)="close()">
+                <ul nz-list-item-actions>
+                    <nz-list-item-action>
+                        <i nz-icon nzType="arrow-right" nzTheme="outline"></i>
+                    </nz-list-item-action>
+                </ul>
+                <ng-container>
+                    <nz-list-item-meta>
+                        <nz-list-item-meta-title>
+                            <a role="button">Ordenes</a>
+                        </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                </ng-container>
+            </nz-list-item>
+            <nz-list-item *ngIf="checkSesion()" (click)="onLogout()">
+                <ul nz-list-item-actions>
+                    <nz-list-item-action>
+                        <i nz-icon nzType="logout" nzTheme="outline" style="font-size: 16px;"></i>
+                    </nz-list-item-action>
+                </ul>
+                <ng-container>
+                    <nz-list-item-meta>
+                        <nz-list-item-meta-title>
+                            <a role="button" title="Salir">
+                                <!-- {{getName()}} -->
+                                Cerrar sesión
+                            </a>
+                        </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                </ng-container>
+            </nz-list-item>
+            <nz-list-item *ngIf="!checkSesion()">
+                <ng-container>
+                    <nz-list-item-meta >
+                        <nz-list-item-meta-title class="container-buttons-menu">
+                            <button nz-button class="mr-2" nzType="primary" nzSize="large" nzShape="round" (click)="showModalLogin()">Ingresar</button>
+                            <button nz-button class="ml-2" nzType="default" nzSize="large" nzShape="round" (click)="showModalRegister()">Registrarme</button>
+                        </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                </ng-container>
+            </nz-list-item>
+        </nz-list>
+    </ng-container>
+    <ng-template #footerTpl>
+    </ng-template>
+</nz-drawer>

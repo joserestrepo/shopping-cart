@@ -1,0 +1,24 @@
+<nz-modal [(nzVisible)]="modalVisible" (nzOnCancel)="handleCancel()" nzTitle="Inicio de sesión" [nzFooter]="footerModal">
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+          <nz-form-control
+            [nzErrorTip]="this.validateForm.controls.email.errors?.required ? 'Por favor ingresa tu correo!': this.validateForm.controls.email.errors?.email ? 'Por favor ingresa un formato de correo valido': '' ">
+            <nz-input-group nzPrefixIcon="user" nzSize="large">
+              <input type="email" nz-input formControlName="email" placeholder="Correo" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Por favor ingresa tu contraseña!">
+            <nz-input-group nzPrefixIcon="lock" nzSize="large">
+              <input type="password" nz-input formControlName="password" placeholder="Contraseña" />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <button nz-button class="login-form-button login-form-margin" nzSize="large" [nzType]="'primary'" nzBlock>Iniciar
+          sesión</button>
+      </form>
+</nz-modal>
+<ng-template #footerModal>
+</ng-template>
+<app-loader  [isLoading]="isloading" text="Iniciado sesión..."></app-loader>

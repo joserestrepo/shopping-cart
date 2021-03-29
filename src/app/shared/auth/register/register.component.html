@@ -1,0 +1,31 @@
+<nz-modal [(nzVisible)]="modalVisible" (nzOnCancel)="handleCancel()" nzTitle="Registrarme" [nzFooter]="footerModal">
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Este campo es requerido!">
+                <nz-input-group nzPrefixIcon="user" nzSize="large">
+                    <input type="text" nz-input formControlName="name" placeholder="Ingrese su nombre" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control
+                [nzErrorTip]="this.validateForm.controls.email.errors?.required ? 'Este campo es requerido!': this.validateForm.controls.email.errors?.email ? 'Por favor ingresa un formato de correo valido': '' ">
+                <nz-input-group nzPrefixIcon="user" nzSize="large">
+                    <input type="email" nz-input formControlName="email" placeholder="Ingrese su correo" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzErrorTip]="this.validateForm.controls.password.errors?.required ? 'Este campo es requerido!': this.validateForm.controls.password.errors?.minlength ? 'Por favor ingresa una contraseña con mínimo 6 caracteres': ''">
+                <nz-input-group nzPrefixIcon="lock" nzSize="large">
+                    <input type="password" nz-input formControlName="password" placeholder="Ingrese una contraseña" />
+                </nz-input-group>
+            </nz-form-control>
+        </nz-form-item>
+        <button nz-button class="login-form-button login-form-margin" nzSize="large" [nzType]="'primary'"
+            nzBlock>Registrarme</button>
+    </form>
+</nz-modal>
+<ng-template #footerModal>
+</ng-template>
+<app-loader  [isLoading]="isloading" text="Registrando usuario..."></app-loader>

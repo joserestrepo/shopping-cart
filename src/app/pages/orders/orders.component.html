@@ -1,0 +1,20 @@
+<nz-collapse *ngFor="let item of listOrders; let i = index">
+    <nz-collapse-panel [nzHeader]="'Orden #' + (i+1)">
+        <ul nz-list nzBordered nzSize="large" *ngFor="let product of item.products">
+            <li nz-list-item>
+                <ul nz-list-item-actions>
+                    <nz-list-item-action>
+                        cantidad: {{product.quantity}}
+                    </nz-list-item-action>
+                </ul>
+                {{product.name}} <br>
+                SKU:{{product.sku}}
+            </li>
+        </ul>
+    </nz-collapse-panel>
+</nz-collapse>
+<div *ngIf="listOrders.length == 0" class="no-data">
+    <img src="./../../../assets/images/no_data.svg" alt="No data">
+    <h1>Aún no cuentas con ordenes creadas</h1>
+</div>
+<app-loader [isLoading]="loadingAuth() || isloading" text="Cargando..."></app-loader>

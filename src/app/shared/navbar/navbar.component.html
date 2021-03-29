@@ -1,0 +1,47 @@
+<nz-header class="header">
+    <div class="logo">Shopping Cart</div>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu">
+        <li nz-menu-item [routerLink]="['/']" routerLinkActive="active"  class="mr-2">Productos</li>
+        <li nz-menu-item *ngIf="checkSesion()" [routerLink]="['/ordenes']" routerLinkActive="active" class="mr-2">Ordenes</li>
+        <li class="mr-4">
+            <a role="button" class="border-right pr-4" (click)="open('40%')">
+                <nz-badge [nzCount]="cartProducts.length" *ngIf="cartProducts.length > 0">
+                    <i nz-icon nzType="shopping-cart" nzTheme="outline" style="color: 'white'; fontSize: '24px' "></i>
+                </nz-badge>
+                <i *ngIf="cartProducts.length == 0" nz-icon nzType="shopping-cart" nzTheme="outline"
+                    style="color: 'white'; fontSize: '24px' "></i>
+            </a>
+        </li>
+        <li *ngIf="!checkSesion()" class="mr-3"><button nz-button nzType="primary" nzSize="large" nzShape="round"
+                (click)="showModal(true)">Ingresar</button></li>
+        <li *ngIf="!checkSesion()"><button nz-button nzType="default" nzSize="large" nzShape="round"
+                (click)="showModalRegister(true)">Registrarme</button></li>
+        <li *ngIf="checkSesion()">
+            <a class="color-white" title="Salir" (click)="onLogout()">
+                {{getName()}}
+                <i nz-icon nzType="logout" nzTheme="outline" style="font-size: 16px;"></i>
+            </a>
+        </li>
+    </ul>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="header-menu-reponsive">
+        <li class="mr-2">
+            <a role="button" class="border-right pr-3" (click)="open('100%')">
+                <nz-badge [nzCount]="cartProducts.length" *ngIf="cartProducts.length > 0">
+                    <i nz-icon nzType="shopping-cart" nzTheme="outline" style="color: 'white'; fontSize: '24px' "></i>
+                </nz-badge>
+                <i *ngIf="cartProducts.length == 0" nz-icon nzType="shopping-cart" nzTheme="outline"
+                    style="color: 'white'; fontSize: '24px' "></i>
+            </a>
+        </li>
+        <li class="ml-2">
+            <a role="button" (click)="openMenu()">
+                <i nz-icon nzType="menu" nzTheme="outline" style="color: 'white'; fontSize: '24px' "></i>
+            </a>
+        </li>
+    </ul>
+</nz-header>
+<app-drawer (closeDrawer)="close($event)" [visible]="visible" [width]="width"></app-drawer>
+<app-menu-reponsive (closeDrawer)="closeMenu($event)" [visible]="visibleMenu" (modalLogin)="showModal($event)" (modalRegister)="showModalRegister($event)"></app-menu-reponsive>
+<app-login (closeModal)="handleCancel($event)" [modalVisible]="modalVisible"></app-login>
+<app-register (closeModal)="handleCancelRegister($event)" [modalVisible]="modalVisibleRegister"></app-register>
+<app-loader [isLoading]="isloading" text="Cerrando sesion..."></app-loader>

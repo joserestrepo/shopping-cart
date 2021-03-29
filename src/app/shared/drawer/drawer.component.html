@@ -1,0 +1,38 @@
+<nz-drawer [nzBodyStyle]="{ overflow: 'auto' }" (nzOnClose)="close()" [nzVisible]="visible" [nzWidth]="width" 
+    nzTitle="Carrito de compras" (nzOnClose)="close()" [nzWrapClassName]="'width-30'" [nzFooter]="footerTpl">
+    <ng-container *nzDrawerContent>
+        <nz-list class="demo-loadmore-list" [ngClass]="{'message-cart': cartProducts.length == 0}">
+            <nz-list-item  *ngFor="let item of cartProducts">
+                <ng-container>
+                    <nz-list-item-meta>
+                        <nz-list-item-meta-title>
+                            <!-- <a href="https://ng.ant.design">{{item.product.name}}</a> -->
+                            {{item.product.name}}
+                        </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                    <ul nz-list-item-actions>
+                        <nz-list-item-action ><a role="button" (click)="editProduct(item.product, item.quantity-1)"><i nz-icon [nzType]="item.quantity > 1 ? 'minus-circle': 'delete' " nzTheme="outline"style="color: '#dc3545'; font-size: 18px"></i></a></nz-list-item-action>
+                        <nz-list-item-action>{{item.quantity}}UND</nz-list-item-action>
+                        <nz-list-item-action><a role="button" (click)="editProduct(item.product, item.quantity+1)"><i nz-icon nzType="plus-circle" nzTheme="outline"style="color: '#0cc665; font-size: 18px'"></i></a></nz-list-item-action>
+                    </ul>
+                </ng-container>
+            </nz-list-item>
+            <nz-list-item *ngIf="cartProducts.length == 0" class="message-cart">
+                <img class="img-fluid" src="./../../../assets/images/empty_cart.svg" alt="carrito vacio">
+                <h2 class="mt-5 text-center">Carrito vacío</h2>
+                <h3 class="text-center">Puedes volver a la tienda y agregar productos</h3>
+            </nz-list-item>
+        </nz-list>
+    </ng-container>
+    <ng-template #footerTpl>
+        <div nz-row [nzGutter]="16" *ngIf="cartProducts.length > 0">
+            <div nz-col nzSpan="12">
+                <button nz-button nzType="default" nzSize="large" nzShape="round" nzBlock (click)="cleanCart()">Vaciar carrito</button>
+            </div>
+            <div nz-col nzSpan="12">
+                <button nz-button class="ant-btn-success" nzSize="large" nzShape="round" nzBlock (click)="createdOrder()">Crear orden</button>
+            </div>
+        </div>
+    </ng-template>
+</nz-drawer>
+<app-loader  [isLoading]="isLoading" text="Creando orden..."></app-loader>

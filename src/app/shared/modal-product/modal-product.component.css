@@ -1,0 +1,26 @@
+.ant-btn-success {
+    color: #fff;
+    background: #0cc665;
+    border-color: #0cc665;
+    text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+    box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}
+
+.container-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.ml-3{
+    margin-left: 1rem;
+}
+
+.ml-0{
+    margin-left: 0 !important;
+}
+
+.mr-3{
+    margin-right: 1rem;
+}

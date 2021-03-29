@@ -1,0 +1,17 @@
+.color-white{
+    color: white !important;
+}
+
+.container-buttons-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.mr-2{
+    margin-right: 0.5rem;
+}
+
+.ml-2{
+    margin-left: 0.5rem;
+}

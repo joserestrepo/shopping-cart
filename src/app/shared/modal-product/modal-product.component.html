@@ -1,0 +1,19 @@
+<nz-modal [(nzVisible)]="modalVisible" (nzOnCancel)="handleCancel()" [nzTitle]="item?.name" [nzFooter]="footerModal">
+    <p>SKU: {{item?.sku}}</p>
+    <p>{{item?.description}}</p>
+</nz-modal>
+<ng-template #footerModal>
+    <div class="container-buttons">
+        <ul nz-list-item-actions class="mr-3 ml-0">
+            <nz-list-item-action>
+                <a *ngIf="quantity > 0" role="button"(click)="editQuatity(quantity-1)"><i nz-icon [nzType]="'minus-circle'" nzTheme="outline" style="color: '#dc3545'; font-size: 18px"></i></a>
+            </nz-list-item-action>
+            <nz-list-item-action>{{quantity}} UND</nz-list-item-action>
+            <nz-list-item-action>
+                <a role="button" (click)="editQuatity(quantity+1)"><i nz-icon nzType="plus-circle" nzTheme="outline" style="color: '#0cc665; font-size: 18px'"></i></a>
+            </nz-list-item-action>
+        </ul>
+        <button *ngIf="!isCart" nz-button class="ant-btn-success ml-3" nzSize="large" nzShape="round" [disabled]="quantity == 0" (click)="addProduct()">Agregar</button>
+        <button *ngIf="isCart" nz-button class="ant-btn-success ml-3" nzSize="large" nzShape="round" (click)="editProduct()">Actualizar</button>
+    </div>
+</ng-template>
